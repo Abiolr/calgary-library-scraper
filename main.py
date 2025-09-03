@@ -1,14 +1,35 @@
+"""main.py - Calgary Public Library data scraping and analysis.
+
+Main entry point for the Calgary Library Scraper application.
+Coordinates the scraping of library data, database operations,
+file exports, and visualization generation.
+"""
+
+__author__ = "Abiola Raji"
+__version__ = "1.0"
+__date__ = "2025-09-03"
+
 import time
 import os
 from src import LibraryDB, scrape_library_data, generate_charts, write_to_file, export_as_csv
     
 def get_query() -> str:
+    """Prompt user for search term and return their input.
+    
+    Returns:
+        str: User-provided search query for library catalog.
+    """
     print("Please enter a search term to look up in the Calgary Public Library:")
     query = str(input(">>> "))
         
     return query
 
 def remove_file(file_path: str):
+    """Remove a file from the filesystem.
+    
+    Args:
+        file_path (str): Path to the file to be removed.
+    """
     os.remove(file_path)
 
 if __name__ == "__main__":

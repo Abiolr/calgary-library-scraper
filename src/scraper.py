@@ -1,3 +1,14 @@
+"""scraper.py - Web scraping module for Calgary Public Library catalog.
+
+Handles automated data extraction from the Calgary Public Library's online
+catalog using Selenium WebDriver and BeautifulSoup for HTML parsing.
+Extracts book metadata including titles, authors, ratings, and publication details.
+"""
+
+__author__ = "Abiola Raji"
+__version__ = "1.0"
+__date__ = "2025-09-03"
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from .library_db import LibraryDB, Book
@@ -8,6 +19,17 @@ import requests
 import sys
 
 def _get_driver(headless=True):
+    """Initialize and configure Chrome WebDriver instance.
+    
+    Args:
+        headless (bool): Run browser in headless mode. Default True.
+        
+    Returns:
+        webdriver.Chrome: Configured Chrome WebDriver instance.
+        
+    Raises:
+        SystemExit: If driver initialization fails.
+    """
     try:
         options = Options()
         if headless:
@@ -24,6 +46,21 @@ def _get_driver(headless=True):
         sys.exit(1)
 
 def _get_target_item_count(url: str, query: str) -> int:
+    """Determine total number of search results available.
+    
+    Makes initial request to catalog search page to extract the total
+    number of items matching the search query.
+    
+    Args:
+        url (str): Base URL for library catalog search.
+        query (str): Search term to look up.
+        
+    Returns:
+        int: Total number of items found for the search query.
+        
+    Raises:
+        SystemExit: If unable to retrieve or parse result count.
+    """
     params = {
             'query': query,
             'searchType': 'tag',
@@ -47,6 +84,19 @@ def _get_target_item_count(url: str, query: str) -> int:
         sys.exit(1)
 
 def scrape_library_data(library_db: LibraryDB, query: str) -> None:
+    """Scrape library catalog data and populate database.
+    
+    Main scraping function that iterates through search result pages,
+    extracts book metadata from each item, and stores it in the database.
+    Handles pagination automatically and calculates Bayesian weighted ratings.
+    
+    Args:
+        library_db (LibraryDB): Database instance to store scraped data.
+        query (str): Search term for library catalog lookup.
+        
+    Raises:
+        SystemExit: If no results found or scraping fails.
+    """
     try:
         driver = _get_driver(headless=True)
         page_number = 1

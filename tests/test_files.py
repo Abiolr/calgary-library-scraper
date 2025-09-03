@@ -1,3 +1,14 @@
+"""test_files.py - Unit tests for file export functionality.
+
+Tests the file writing and CSV export capabilities including proper
+file creation, content validation, error handling, and cleanup
+for both populated and empty database scenarios.
+"""
+
+__author__ = "Abiola Raji"
+__version__ = "1.0"
+__date__ = "2025-09-03"
+
 import pytest
 import os
 from unittest.mock import mock_open, patch
@@ -5,7 +16,11 @@ from src import LibraryDB, write_to_file, export_as_csv
 from .sample import library_items_sample
 
 def test_write_to_file(populated_db):
-    """Test writing library data to text files"""
+    """Test writing library data to formatted text files.
+    
+    Args:
+        populated_db: Database fixture with sample data.
+    """
     query = "test_query"
     
     # Mock the file operations
@@ -33,7 +48,11 @@ def test_write_to_file(populated_db):
         assert "Top Rated Books (Bayesian Weighted):" in content
 
 def test_write_to_file_empty_db(db):
-    """Test writing with empty database"""
+    """Test writing text files with empty database.
+    
+    Args:
+        db: Empty database fixture.
+    """
     query = "empty_test"
     
     with patch("builtins.open", mock_open()) as mocked_file:
@@ -43,7 +62,11 @@ def test_write_to_file_empty_db(db):
         assert mocked_file.call_count == 2
 
 def test_write_to_file_exception_handling(populated_db):
-    """Test exception handling in write_to_file"""
+    """Test exception handling in text file writing.
+    
+    Args:
+        populated_db: Database fixture with sample data.
+    """
     query = "test_query"
     
     # Mock file operations to raise an exception
@@ -57,8 +80,11 @@ def test_write_to_file_exception_handling(populated_db):
             pytest.fail("write_to_file should handle exceptions internally")
 
 def test_export_as_csv(populated_db):
-    """Test exporting library data to CSV"""
+    """Test exporting library data to CSV format.
     
+    Args:
+        populated_db: Database fixture with sample data.
+    """
     with patch("builtins.open", mock_open()) as mocked_file:
         with patch("csv.writer") as mocked_writer:
             export_as_csv(populated_db)
@@ -71,8 +97,11 @@ def test_export_as_csv(populated_db):
             mocked_writer.return_value.writerow.assert_called_once()
 
 def test_export_as_csv_empty_db(db):
-    """Test CSV export with empty database"""
+    """Test CSV export with empty database.
     
+    Args:
+        db: Empty database fixture.
+    """
     with patch("builtins.open", mock_open()) as mocked_file:
         with patch("csv.writer") as mocked_writer:
             export_as_csv(db)
@@ -82,8 +111,11 @@ def test_export_as_csv_empty_db(db):
             mocked_writer.assert_called_once()
 
 def test_export_as_csv_exception_handling(populated_db):
-    """Test exception handling in export_as_csv"""
+    """Test exception handling in CSV export functionality.
     
+    Args:
+        populated_db: Database fixture with sample data.
+    """
     # Mock file operations to raise an exception
     with patch("builtins.open", side_effect=Exception("CSV error")):
         # Should not raise exception, should handle it gracefully

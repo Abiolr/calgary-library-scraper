@@ -1,3 +1,14 @@
+"""sample.py - Sample data for testing library functionality.
+
+Contains realistic test data representing a diverse collection of books
+with varying formats, publication years, ratings, and review counts
+for comprehensive testing of database operations and analytics.
+"""
+
+__author__ = "Abiola Raji"
+__version__ = "1.0"
+__date__ = "2025-09-03"
+
 library_items_sample = [
     ("The Hobbit", "Tolkien, J.R.R.", "BOOK", 1937, 4.25, 2150000, 4.25, "/catalog/12345"),
     ("Dune", "Herbert, Frank", "PAPERBACK", 1965, 4.21, 890000, 4.21, "/catalog/12346"),

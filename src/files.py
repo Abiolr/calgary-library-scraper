@@ -1,7 +1,28 @@
+"""files.py - File export utilities for library data.
+
+Handles exporting library database contents to various file formats
+including formatted text reports and CSV files for data analysis
+and archival purposes.
+"""
+
+__author__ = "Abiola Raji"
+__version__ = "1.0"
+__date__ = "2025-09-03"
+
 from .library_db import LibraryDB, prettify
 import csv
 
-def write_to_file(library_db: LibraryDB, query: str) -> None:  
+def write_to_file(library_db: LibraryDB, query: str) -> None:
+    """Export library data to formatted text files.
+    
+    Creates two text files:
+    1. library_items.txt - All items in tabular format
+    2. library_results.txt - Statistical analysis and rankings
+    
+    Args:
+        library_db (LibraryDB): Database instance containing library data.
+        query (str): Search query used in report headers.
+    """
     try:
         with open("results/library_items.txt", "w") as file:
             file.write(f"ALL LIBRARY ITEMS\n")
@@ -47,6 +68,14 @@ def write_to_file(library_db: LibraryDB, query: str) -> None:
         print(f"Error writing to file: {e}")
 
 def export_as_csv(library_db: LibraryDB) -> None:
+    """Export all library items to CSV format.
+    
+    Creates a comma-separated values file containing all book records
+    suitable for spreadsheet analysis or data processing.
+    
+    Args:
+        library_db (LibraryDB): Database instance containing library data.
+    """
     try:
         with open("results/library_items.csv", "w", newline='') as file:
             writer = csv.writer(file)
