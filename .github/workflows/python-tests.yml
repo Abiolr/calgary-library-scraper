@@ -41,9 +41,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y google-chrome-stable
 
-        # Pin ChromeDriver to a stable version
-        CHROMEDRIVER_VERSION=124.0.6367.91
-        echo "✅ Using pinned ChromeDriver version: $CHROMEDRIVER_VERSION"
+        # Pin ChromeDriver to the latest stable release
+        CHROMEDRIVER_VERSION=125.0.6422.60
+        echo "✅ Using ChromeDriver version: $CHROMEDRIVER_VERSION"
 
         wget -O /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/${CHROMEDRIVER_VERSION}/chromedriver_linux64.zip"
         sudo unzip -o /tmp/chromedriver.zip -d /usr/local/bin/
@@ -64,7 +64,6 @@ jobs:
       env:
         DISPLAY: :99
       run: |
-        # Run tests with coverage
         pytest tests/ -v --cov=src --cov-report=xml --cov-report=html --cov-report=term-missing
       
     - name: Upload coverage reports to Codecov
