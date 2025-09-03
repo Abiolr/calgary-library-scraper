@@ -101,9 +101,16 @@ bayesian_avg = (v / (v + m)) * R + (m / (v + m)) * C
 The application creates four distinct chart types:
 
 1. **Format Distribution**: Pie chart showing book format breakdown
-2. **Publication Timeline**: Line plot of publication year trends  
+<img width="800" height="600" alt="format_distribution" src="https://github.com/user-attachments/assets/f343648b-4a1b-44ad-ad9f-736936448277" />
+  
+2. **Publication Timeline**: Line plot of publication year trends
+<img width="1000" height="600" alt="pub_year_distribution" src="https://github.com/user-attachments/assets/22f669c1-41c2-4c4c-bf1d-bf96426b8302" />
+
 3. **Author Frequency**: Horizontal bar chart of prolific authors
+<img width="1000" height="2000" alt="most_frequent_authors" src="https://github.com/user-attachments/assets/8e650bd7-f65e-4e12-a09a-8ae928027a70" />
+
 4. **Rating Analysis**: Scatter plot correlating ratings with review counts
+<img width="1000" height="600" alt="ratings_vs_num_ratings" src="https://github.com/user-attachments/assets/3f3f1f82-1cdc-497f-8b6f-387f514912e4" />
 
 ## 🔧 Configuration & Deployment
 
