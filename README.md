@@ -27,7 +27,7 @@ python main.py
 
 Enter your search term and watch as the application automatically scrapes the library catalog, performs statistical analysis, and generates comprehensive visualizations.
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 - **Languages**: Python 3.8+
 - **Web Scraping**: Selenium WebDriver, BeautifulSoup4, Requests
@@ -60,7 +60,7 @@ The application generates rich analytics from library data:
 +------------------------------------------+------------------+------+
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 calgary-library-scraper/
@@ -112,7 +112,7 @@ The application creates four distinct chart types:
 4. **Rating Analysis**: Scatter plot correlating ratings with review counts
 <img width="1000" height="600" alt="ratings_vs_num_ratings" src="https://github.com/user-attachments/assets/3f3f1f82-1cdc-497f-8b6f-387f514912e4" />
 
-## 🔧 Configuration & Deployment
+## Configuration & Deployment
 
 ### Environment Setup
 ```bash
@@ -129,7 +129,7 @@ pip install selenium beautifulsoup4 matplotlib requests lxml
 - Coverage reporting and artifact generation
 - Cross-platform compatibility testing
 
-## 📋 Usage Examples
+## Usage Examples
 
 ### Basic Search
 ```python
