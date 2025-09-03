@@ -149,7 +149,7 @@ format_dist = library_db.get_format_data()
 publication_trends = library_db.get_pub_year_data()
 ```
 
-## 🏆 Professional Highlights
+## Professional Highlights
 
 - **Scalable Design**: Modular architecture supporting easy feature additions
 - **Data Integrity**: Comprehensive validation and error handling
